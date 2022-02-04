@@ -9,3 +9,8 @@ How to Create EKS Cluster Using Terraform + IAM Roles for Service Accounts & EKS
 https://antonputra.com/terraform/how-to-create-eks-cluster-using-terraform/#create-aws-vpc-using-terraform
 How to Create EKS Cluster Using Terraform?
 
+
+aws eks --region us-east-1 update-kubeconfig --name eks --profile terraform
+
+aws eks --region us-east-1 update-kubeconfig --name demo
+
