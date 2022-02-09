@@ -17,3 +17,6 @@ aws eks --region us-east-1 update-kubeconfig --name eks --profile terraform
 
 aws eks --region us-east-1 update-kubeconfig --name demo
 
+# check your usedid account and role
+aws sts get-caller-identity
+
