@@ -48,14 +48,3 @@ output "aws_eks_cluster_name" {
 output "aws_eks_cluster_arn" {
   value = aws_iam_role.demo.arn
 }
-
-#subnets
-#subnets
-output "Subnets" {
-  value = <<EOT
-        Private Subnet 1   ${aws_subnet.private-us-east-1a.id} - ${aws_subnet.private-us-east-1a.availability_zone} - ${aws_subnet.private-us-east-1a.cidr_block}
-        Private Subnet 2   ${aws_subnet.private-us-east-1b.id} - ${aws_subnet.private-us-east-1b.availability_zone} - ${aws_subnet.private-us-east-1b.cidr_block}
-        Public  Subnet 1    ${aws_subnet.public-us-east-1a.id} - ${aws_subnet.public-us-east-1a.availability_zone} - ${aws_subnet.public-us-east-1a.cidr_block}
-        Public  Subnet 2    ${aws_subnet.public-us-east-1b.id} - ${aws_subnet.public-us-east-1b.availability_zone} - ${aws_subnet.public-us-east-1b.cidr_block}
-    EOT
-}
