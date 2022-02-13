@@ -38,3 +38,23 @@ resource "aws_eks_cluster" "demo" {
    # until this policy is ready cluster won't be created
   depends_on = [aws_iam_role_policy_attachment.demo-AmazonEKSClusterPolicy]
 }
+
+#OUTPUTS
+
+output "aws_eks_cluster_name" {
+  value = aws_eks_cluster.demo.id
+}
+
+output "aws_eks_cluster_arn" {
+  value = aws_iam_role.demo.arn
+}
+
+#subnets
+output "Subntes" {
+  value = <<EOT
+        subnet_private_1a   ${aws_subnet.private-us-east-1a.id}
+        subnet_private_1b   ${aws_subnet.private-us-east-1b.id}
+        subnet_public_1a    ${aws_subnet.public-us-east-1a.id}
+        subnet_public_1b    ${aws_subnet.public-us-east-1b.id}
+    EOT
+}
