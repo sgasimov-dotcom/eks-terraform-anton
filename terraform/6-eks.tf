@@ -50,11 +50,12 @@ output "aws_eks_cluster_arn" {
 }
 
 #subnets
-output "Subntes" {
+#subnets
+output "Subnets" {
   value = <<EOT
-        subnet_private_1a   ${aws_subnet.private-us-east-1a.id}
-        subnet_private_1b   ${aws_subnet.private-us-east-1b.id}
-        subnet_public_1a    ${aws_subnet.public-us-east-1a.id}
-        subnet_public_1b    ${aws_subnet.public-us-east-1b.id}
+        Private Subnet 1   ${aws_subnet.private-us-east-1a.id} - ${aws_subnet.private-us-east-1a.availability_zone} - ${aws_subnet.private-us-east-1a.cidr_block}
+        Private Subnet 2   ${aws_subnet.private-us-east-1b.id} - ${aws_subnet.private-us-east-1b.availability_zone} - ${aws_subnet.private-us-east-1b.cidr_block}
+        Public  Subnet 1    ${aws_subnet.public-us-east-1a.id} - ${aws_subnet.public-us-east-1a.availability_zone} - ${aws_subnet.public-us-east-1a.cidr_block}
+        Public  Subnet 2    ${aws_subnet.public-us-east-1b.id} - ${aws_subnet.public-us-east-1b.availability_zone} - ${aws_subnet.public-us-east-1b.cidr_block}
     EOT
 }
