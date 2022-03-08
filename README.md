@@ -1,5 +1,8 @@
 # How to Create EKS Cluster Using Terraform
 
+![image](https://user-images.githubusercontent.com/100177153/157290607-9c737e66-0ed2-4405-87f2-d8ca76ff88ae.png)
+
+
  You can find tutorial [here](https://antonputra.com/Terraform/how-to-create-eks-cluster-using-terraform/).
  
  
