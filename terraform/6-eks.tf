@@ -30,7 +30,7 @@ resource "aws_eks_cluster" "eks" {
   name = "eks"
   # The Amazon Resource Name (ARN) of the IAM role that provides permissions for k8s control plane to
   # make calls to AWS API operations on your behalf
-  role_arn = aws_iam_role.aws_eks_cluster.arn
+  role_arn = aws_iam_role.demo.arn
   # Desired Kubernetes master version
   version = "1.18"
   vpc_config {
@@ -41,10 +41,10 @@ resource "aws_eks_cluster" "eks" {
     endpoint_public_access = true
     # Must be in at least 2 diff AZ
     subnet_ids = [
-      aws_subnet.public_1.id,
-      aws_subnet.public_2.id,
-      aws_subnet.private_1.id,
-      aws_subnet.private_2.id
+      aws_subnet.public-us-east-1a.id,
+      aws_subnet.public-us-east-1b.id,
+      aws_subnet.private-us-east-1a.id,
+      aws_subnet.private-us-east-1b.id
     ]
   }
 
@@ -53,24 +53,8 @@ resource "aws_eks_cluster" "eks" {
 # otherwise, eks won't be able to properly delete EKS managed ec2 infrastr
 
 depends_on = [
-  aws_iam_role_policy_attachment.amazon_eks_cluster_policy
+  aws_iam_role_policy_attachment.demo-AmazonEKSClusterPolicy
 ]
-}
-# iam role 
-resource "aws_eks_cluster" "demo" {
-  name     = "demo"
-  role_arn = aws_iam_role.demo.arn
-
-  vpc_config {
-    subnet_ids = [
-      aws_subnet.private-us-east-1a.id,
-      aws_subnet.private-us-east-1b.id,
-      aws_subnet.public-us-east-1a.id,
-      aws_subnet.public-us-east-1b.id
-    ]
-  }
-   # until this policy is ready cluster won't be created
-  depends_on = [aws_iam_role_policy_attachment.demo-AmazonEKSClusterPolicy]
 }
 
 #OUTPUTS
