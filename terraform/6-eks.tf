@@ -1,6 +1,9 @@
 resource "aws_iam_role" "demo" {
+  #The name of the role 
   name = "eks-cluster-demo"
-
+# The policy that grants an entity permission to assume the role.
+# Used to access AWS resources that you might not normally have access to.
+# The role that Amazon EKS use to create AWS resources for Kubernetes clusters.
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
