@@ -32,7 +32,7 @@ resource "aws_eks_cluster" "eks" {
   # make calls to AWS API operations on your behalf
   role_arn = aws_iam_role.demo.arn
   # Desired Kubernetes master version
-  version = "1.18"
+  version = "1.19"
   vpc_config {
     # Indicates whether or not the Amazon EKS private API server endpoint is enabled
     # you may need this for vpn or bastion host setup 
@@ -59,10 +59,10 @@ depends_on = [
 
 #OUTPUTS
 
-output "aws_eks_cluster_name" {
-  value = aws_eks_cluster.demo.id
-}
+// output "aws_eks_cluster_name" {
+//   value = aws_eks_cluster.eks.id
+// }
 
-output "aws_eks_cluster_arn" {
-  value = aws_iam_role.demo.arn
-}
+// output "aws_eks_cluster_arn" {
+//   value = aws_iam_role.eks.arn
+// }
