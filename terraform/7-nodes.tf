@@ -1,7 +1,8 @@
-# convert objects to json 
+# Create IAM role for EKS Node Group
 resource "aws_iam_role" "nodes" {
+  # The name of the role
   name = "eks-node-group-nodes"
-
+  # The policy that grant an entity permission to assume the role.
   assume_role_policy = jsonencode({
     Statement = [{
       Action = "sts:AssumeRole"
@@ -14,16 +15,19 @@ resource "aws_iam_role" "nodes" {
   })
 }
 # grants access to ec2 and eks
+# https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEKSWorkerNodePolicy
 resource "aws_iam_role_policy_attachment" "nodes-AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.nodes.name
 }
 # aws eks cni policy
+# https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEKS_CNI_Policy
 resource "aws_iam_role_policy_attachment" "nodes-AmazonEKS_CNI_Policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
   role       = aws_iam_role.nodes.name
 }
 # aws ec2 container registry policy READ only. It allows to download and run docker images from ECR repository
+# https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEC2ContainerRegistryReadOnly
 resource "aws_iam_role_policy_attachment" "nodes-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.nodes.name
@@ -55,8 +59,10 @@ resource "aws_eks_node_group" "private-nodes" {
   }
 
   labels = {
-    role = "general"
+    role = "nodes-general"
   }
+
+  // version = "1.21"
 
 # allow node to repel a set of pods
   # taint {
