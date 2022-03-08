@@ -19,10 +19,24 @@ resource "aws_iam_role" "demo" {
 }
 POLICY
 }
-
 resource "aws_iam_role_policy_attachment" "demo-AmazonEKSClusterPolicy" {
+  # The ARN of the policty you want to apply
+  # https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEKSClusterPolicy
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.demo.name
+}
+
+resource "aws_eks_cluster" "eks" {
+  name = "eks"
+  # The Amazon Resource Name (ARN) of the IAM role that provides permissions for k8s control plane to
+  # make calls to AWS API operations on your behalf
+  role_arn = aws_iam_role.aws_eks_cluster.arn
+  # Desired Kubernetes master version
+  version = "1.18"
+  vpc_config {
+    # Indicates whether or not the EKS private API server endpoint is enabled 
+    endpoint_private_access = false
+  }
 }
 
 # iam role 
