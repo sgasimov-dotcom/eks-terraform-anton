@@ -2,7 +2,7 @@
 
  You can find tutorial [here](https://antonputra.com/Terraform/how-to-create-eks-cluster-using-terraform/).
  
- 
+ ![image](https://user-images.githubusercontent.com/100177153/157290607-9c737e66-0ed2-4405-87f2-d8ca76ff88ae.png)
  
  https://www.youtube.com/watch?v=EGdN21F2Jfw&ab_channel=AntonPutra
 How to Add IAM User and IAM Role to AWS EKS Cluster?
