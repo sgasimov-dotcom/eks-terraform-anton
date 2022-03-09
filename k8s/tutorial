@@ -13,9 +13,8 @@ https://antonputra.com/terraform/how-to-create-eks-cluster-using-terraform/#crea
 How to Create EKS Cluster Using Terraform?
 
 
-aws eks --region us-east-1 update-kubeconfig --name eks --profile terraform
+aws eks --region us-east-1 update-kubeconfig --name eks-cluster 
 
-aws eks --region us-east-1 update-kubeconfig --name demo
 
 # check your usedid account and role
 aws sts get-caller-identity

@@ -9,4 +9,9 @@ sudo mv terraform /bin
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo chmod +x kubectl && sudo mv kubectl /bin/
 
-# aws eks --region us-east-1 update-kubeconfig --name eks --profile terraform
+# aws eks --region us-east-1 update-kubeconfig --name eks-cluster --profile terraform
+
+# Add  iam user and iam role 
+# https://antonputra.com/kubernetes/add-iam-user-and-iam-role-to-eks/#add-iam-role-to-eks-cluster
+
+# kubectl edit -n kube-system configmap/aws-auth
